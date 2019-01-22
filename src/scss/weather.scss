@@ -3,6 +3,17 @@
 }
 
 #weather-view {
+  .main-weather-info {
+    font-size: 1.75em;
+    margin-bottom: 15px;
+
+    img {
+      height: 50px;
+      width: 50px;
+      margin-left: 5px;
+    }
+  }
+
   ul {
     list-style: none;
     padding-left: 0;
@@ -13,14 +24,8 @@
   }
 
   .icon {
-    position: relative;
     height: 30px;
     width: 30px;
     margin-right: 10px;
-  }
-
-  .main-weather-info {
-    font-size: 1.75em;
-    margin-bottom: 15px;
   }
 }

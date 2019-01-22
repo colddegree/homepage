@@ -1,0 +1,24 @@
+#currency-rate-view {
+  padding-left: 25px;
+  padding-right: 25px;
+
+  .main-currency-rate-info {
+    font-size: 1.75em;
+    margin-bottom: 15px;
+  }
+
+  ul {
+    list-style: none;
+    padding-left: 0;
+
+    li {
+      margin-bottom: 15px;
+    }
+  }
+
+  .icon {
+    height: 30px;
+    width: 30px;
+    margin-right: 10px;
+  }
+}

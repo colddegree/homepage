@@ -87,6 +87,11 @@ module.exports = {
             template: "./html/weather.html",
             minify: HTML_WEBPACK_PLUGIN__MINIFY_OPTIONS
         }),
+        new HtmlWebpackPlugin({
+            filename: "crypto.html",
+            template: "./html/crypto.html",
+            minify: HTML_WEBPACK_PLUGIN__MINIFY_OPTIONS
+        }),
         new MomentLocalesPlugin({
             localesToKeep: ['ru']
         })

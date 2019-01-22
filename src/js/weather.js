@@ -18,8 +18,6 @@ export function loadPage() {
         fetch(url)
             .then(response => response.json())
             .then(json => {
-                console.log("temp: ", json.main.temp);
-                console.log("moment(): ", moment());
                 return {
                     status: json.weather[0].description.capitalize(),
                     statusIconUrl: getIconUrl(json.weather[0].icon),
@@ -60,15 +58,7 @@ function hPa_to_mmHg(hPa) {
 }
 
 function updateWeatherView(weatherView, weather) {
-    clearChildrenOf(weatherView);
-
     weatherView.innerHTML = getWeatherViewHtml(weather);
-}
-
-function clearChildrenOf(element) {
-    while (element.firstChild) {
-        element.removeChild(element.firstChild);
-    }
 }
 
 function getWeatherViewHtml(weather) {

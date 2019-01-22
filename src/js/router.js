@@ -4,7 +4,9 @@ export default class Router {
         return {
             "^/$": () => import("./index.js"),
             "^/index.html$": () => import("./index.js"),
-            "^/weather.html$": () => import("./weather.js")
+            "^/weather.html$": () => import("./weather.js"),
+            "^/crypto.html$": () => import("./crypto.js"),
+            "^/contact.html$": () => import("./contact.js")
         };
     }
 

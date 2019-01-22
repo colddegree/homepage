@@ -2,16 +2,17 @@ export default class Router {
 
     static get modules() {
         return {
-            '^/$': () => import('./weather.js'),
-            '^/index.html$': () => import('./weather.js'),
+            "^/$": () => import("./index.js"),
+            "^/index.html$": () => import("./index.js"),
+            "^/weather.html$": () => import("./weather.js")
         };
     }
 
     static load() {
-        let url = window.location.pathname;
+        let currentPath = window.location.pathname;
 
         for (let page in Router.modules) {
-            if (new RegExp(page).test(url)) {
+            if (new RegExp(page).test(currentPath)) {
                 Router.modules[page]().then(p => p.loadPage());
             }
         }

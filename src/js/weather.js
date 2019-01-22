@@ -1,6 +1,8 @@
 import * as moment from "moment";
 
 export function loadPage() {
+    console.log("You're at /weather.html now");
+
     const citySelect = document.getElementById("city-select");
     const weatherView = document.getElementById("weather-view");
 
@@ -70,7 +72,8 @@ function clearChildrenOf(element) {
 }
 
 function getWeatherViewHtml(weather) {
-    return `<header class="main-weather-info">
+    return `
+        <header class="main-weather-info">
           ${weather.temperature} °C, ${weather.status}
           <img src="${weather.statusIconUrl}">
         </header>

@@ -1,36 +1,19 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <!-- Required meta tags -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <title>Homepage</title>
+  <%= _.template(require('./templates/meta-tags.html'))() %>
+
+  <title>Домашняя страница: главная</title>
 </head>
 <body>
 
+<%= _.template(require('./templates/header.html'))() %>
+
 <div class="container">
-  <div class="row justify-content-center">
-    <div class="col-12 col-md-9 col-lg-7 col-xl-6">
-      <select id="city-select" name="city" class="form-control form-control-lg">
-        <option value="" selected disabled hidden>Выберите населённый пункт</option>
-        <option value="Vladivostok,ru">Владивосток, Россия</option>
-        <option value="Moscow,ru">Москва, Россия</option>
-        <option value="Saint Petersburg,ru">Санкт-Петербург, Россия</option>
-        <option value="Kiev,ua">Киев, Украина</option>
-        <option value="London,uk">Лондон, Англия</option>
-        <option value="New York,us">Нью-Йорк, США</option>
-        <option value="San Francisco,us">Сан-Франциско, США</option>
-        <option value="Sydney,au">Сидней, Австралия</option>
-      </select>
-    </div>
-  </div>
-
-  <div class="row justify-content-center">
-    <div class="col-12 col-md-9 col-lg-7 col-xl-6">
-      <div id="weather-view">
-
-      </div>
+  <div class="row">
+    <div class="col-12 col-md-8">
+      <h1>Пустота...</h1>
     </div>
   </div>
 </div>

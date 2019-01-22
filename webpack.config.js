@@ -5,12 +5,12 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const MomentLocalesPlugin = require("moment-locales-webpack-plugin");
 
 const HTML_WEBPACK_PLUGIN__MINIFY_OPTIONS = {
-    collapseWhitespace: true,
-    removeComments: true,
-    removeRedundantAttributes: true,
-    removeScriptTypeAttributes: true,
-    removeStyleLinkTypeAttributes: true,
-    useShortDoctype: true
+    // collapseWhitespace: true,
+    // removeComments: true,
+    // removeRedundantAttributes: true,
+    // removeScriptTypeAttributes: true,
+    // removeStyleLinkTypeAttributes: true,
+    // useShortDoctype: true
 };
 
 module.exports = {
@@ -29,6 +29,11 @@ module.exports = {
 
     module: {
         rules: [
+            {
+                test: /\.html$/,
+                include: path.resolve(__dirname, "src/html/templates"),
+                use: ["raw-loader"]
+            },
             {
                 test: /\.scss$/,
                 include: path.resolve(__dirname, "src/scss"),
@@ -63,10 +68,6 @@ module.exports = {
             {
                 test: /\.svg$/,
                 use: "file-loader"
-            },
-            {
-                test: /\.html$/,
-                use: "html-loader"
             }
         ]
     },
@@ -79,6 +80,11 @@ module.exports = {
         new HtmlWebpackPlugin({
             filename: "index.html",
             template: "./html/index.html",
+            minify: HTML_WEBPACK_PLUGIN__MINIFY_OPTIONS
+        }),
+        new HtmlWebpackPlugin({
+            filename: "weather.html",
+            template: "./html/weather.html",
             minify: HTML_WEBPACK_PLUGIN__MINIFY_OPTIONS
         }),
         new MomentLocalesPlugin({

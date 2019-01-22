@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+
+  <%= _.template(require('./templates/meta-tags.html'))() %>
+
+  <title>Домашняя страница: погода</title>
+</head>
+<body>
+
+<%= _.template(require('./templates/header.html'))() %>
+
+<main role="main" class="container">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+      <select id="city-select" name="city" class="form-control form-control-lg">
+        <option value="" selected disabled hidden>Выберите населённый пункт</option>
+        <option value="Vladivostok,ru">Владивосток, Россия</option>
+        <option value="Moscow,ru">Москва, Россия</option>
+        <option value="Saint Petersburg,ru">Санкт-Петербург, Россия</option>
+        <option value="Kiev,ua">Киев, Украина</option>
+        <option value="London,uk">Лондон, Англия</option>
+        <option value="New York,us">Нью-Йорк, США</option>
+        <option value="San Francisco,us">Сан-Франциско, США</option>
+        <option value="Sydney,au">Сидней, Австралия</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+      <div id="weather-view">
+
+      </div>
+    </div>
+  </div>
+</main>
+
+</body>
+</html>

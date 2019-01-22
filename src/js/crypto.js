@@ -12,12 +12,17 @@ export function loadPage() {
         if (baseCurrencySelect.selectedIndex === 0 || targetCurrencySelect.selectedIndex === 0)
             return;
 
+        clearElement(currencyRateView);
+        hideErrorMessage();
+
         console.log("Selected base currency: ", baseCurrencySelect.value);
         console.log("Selected target currency: ", targetCurrencySelect.value);
 
         const url = getUrl(baseCurrencySelect.value, targetCurrencySelect.value);
 
         console.log("fetching... " + url);
+
+        showLoadingSpinner();
 
         fetch(url)
             .then(response => response.json())
@@ -40,8 +45,16 @@ export function loadPage() {
                     updatedAt: json.timestamp
                 }
             })
-            .then(rate => updateCurrencyRateView(currencyRateView, rate))
-            .catch(error => console.log(error.message));
+            .then(rate => {
+                hideLoadingSpinner();
+                updateCurrencyRateView(currencyRateView, rate);
+            })
+            .catch(error => {
+                console.log(error.message);
+
+                hideLoadingSpinner();
+                displayErrorMessage(error.message);
+            });
     };
 
     baseCurrencySelect.addEventListener("change", handler);
@@ -79,4 +92,30 @@ function getCurrencyRateView(rate) {
         <footer>
           Обновлено ${moment.unix(rate.updatedAt).local().format("LLL")}
         </footer>`;
+}
+
+function clearElement(element) {
+    element.innerHTML = "";
+}
+
+function showLoadingSpinner() {
+    const spinner = document.getElementById("loading-spinner");
+    spinner.classList.remove("hidden");
+}
+
+function hideLoadingSpinner() {
+    const spinner = document.getElementById("loading-spinner");
+    spinner.classList.add("hidden");
+}
+
+function displayErrorMessage(msg) {
+    const errorMessage = document.getElementById("error-message");
+    errorMessage.innerHTML = msg;
+    errorMessage.classList.remove("hidden");
+}
+
+function hideErrorMessage() {
+    const errorMessage = document.getElementById("error-message");
+    errorMessage.innerHTML = "";
+    errorMessage.classList.add("hidden");
 }

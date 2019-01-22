@@ -2,13 +2,18 @@
 <html lang="ru">
 <head>
 
-  <%= _.template(require('./templates/meta-tags.html'))() %>
+  <%= _.template(require("./templates/meta-tags.html"))() %>
 
   <title>Домашняя страница: курс криптовалют</title>
 </head>
 <body>
 
-<%= _.template(require('./templates/header.html'))() %>
+<header class="row justify-content-center mb-3">
+
+  <%= _.template(require("./templates/header.html"))() %>
+
+  <h1 class="text-center">Курс криптовалют</h1>
+</header>
 
 <main role="main" class="container">
   <div class="row justify-content-center mb-3">
@@ -17,7 +22,7 @@
       <div class="form-group">
         <label for="base-currency-select">Сколько стоит один</label>
 
-        <%= _.template(require('./templates/currency-select.html'))({
+        <%= _.template(require("./templates/currency-select.html"))({
           currencySide: "base",
           defaultOptionText: "Выберите базовую валюту"
         }) %>
@@ -31,7 +36,7 @@
       <div class="form-group">
         <label for="target-currency-select">в</label>
 
-        <%= _.template(require('./templates/currency-select.html'))({
+        <%= _.template(require("./templates/currency-select.html"))({
           currencySide: "target",
           defaultOptionText: "Выберите целевую валюту"
         }) %>
@@ -39,6 +44,18 @@
       </div>
 
     </div>
+  </div>
+
+  <div class="row justify-content-center">
+    <div id="loading-spinner" class="spinner-loader hidden">
+      Загрузка...
+    </div>
+  </div>
+
+  <div class="row justify-content-center">
+    <p id="error-message" class="bg-danger text-white rounded px-3 py-2 hidden">
+      Ошибка
+    </p>
   </div>
 
   <div class="row justify-content-center">

@@ -46,11 +46,7 @@
     </div>
   </div>
 
-  <div class="row justify-content-center">
-    <div id="loading-spinner" class="spinner-loader hidden">
-      Загрузка...
-    </div>
-  </div>
+  <%= _.template(require("./templates/loading-spinner.html"))() %>
 
   <div class="row justify-content-center">
     <p id="error-message" class="bg-danger text-white rounded px-3 py-2 hidden">

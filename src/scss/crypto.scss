@@ -1,4 +1,4 @@
-@import "~@chgibb/css-spinners/css/spinner/spinner.css";
+@import "loading-spinner";
 
 #currency-rate-view {
   padding-left: 25px;
@@ -23,8 +23,4 @@
     width: 30px;
     margin-right: 10px;
   }
-}
-
-.hidden {
-  display: none !important;
 }

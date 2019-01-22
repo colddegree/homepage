@@ -1,4 +1,6 @@
 import * as moment from "moment";
+import * as ElementUtils from "./element-utils"
+import * as LoadingSpinner from "./loading-spinner";
 
 export function loadPage() {
     console.log("You're at /crypto.html now");
@@ -12,7 +14,7 @@ export function loadPage() {
         if (baseCurrencySelect.selectedIndex === 0 || targetCurrencySelect.selectedIndex === 0)
             return;
 
-        clearElement(currencyRateView);
+        ElementUtils.clear(currencyRateView);
         hideErrorMessage();
 
         console.log("Selected base currency: ", baseCurrencySelect.value);
@@ -22,7 +24,7 @@ export function loadPage() {
 
         console.log("fetching... " + url);
 
-        showLoadingSpinner();
+        LoadingSpinner.show();
 
         fetch(url)
             .then(response => response.json())
@@ -46,13 +48,13 @@ export function loadPage() {
                 }
             })
             .then(rate => {
-                hideLoadingSpinner();
+                LoadingSpinner.hide();
                 updateCurrencyRateView(currencyRateView, rate);
             })
             .catch(error => {
                 console.log(error.message);
 
-                hideLoadingSpinner();
+                LoadingSpinner.hide();
                 displayErrorMessage(error.message);
             });
     };
@@ -76,6 +78,8 @@ function updateCurrencyRateView(currencyRateView, rate) {
 }
 
 function getCurrencyRateView(rate) {
+    const updatedLocalTime = moment.unix(rate.updatedAt).local();
+
     return `
         <header class="main-currency-rate-info">
           1 ${rate.baseCurrency} стоит ${rate.exchangeRate} ${rate.targetCurrency}
@@ -90,32 +94,18 @@ function getCurrencyRateView(rate) {
         </ul>
         <hr>
         <footer>
-          Обновлено ${moment.unix(rate.updatedAt).local().format("LLL")}
+          Обновлено ${updatedLocalTime.format("LLL")} (${updatedLocalTime.fromNow()})
         </footer>`;
-}
-
-function clearElement(element) {
-    element.innerHTML = "";
-}
-
-function showLoadingSpinner() {
-    const spinner = document.getElementById("loading-spinner");
-    spinner.classList.remove("hidden");
-}
-
-function hideLoadingSpinner() {
-    const spinner = document.getElementById("loading-spinner");
-    spinner.classList.add("hidden");
 }
 
 function displayErrorMessage(msg) {
     const errorMessage = document.getElementById("error-message");
     errorMessage.innerHTML = msg;
-    errorMessage.classList.remove("hidden");
+    ElementUtils.show(errorMessage);
 }
 
 function hideErrorMessage() {
     const errorMessage = document.getElementById("error-message");
     errorMessage.innerHTML = "";
-    errorMessage.classList.add("hidden");
+    ElementUtils.hide(errorMessage);
 }

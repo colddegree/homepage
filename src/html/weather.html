@@ -8,11 +8,17 @@
 </head>
 <body>
 
-<%= _.template(require("./templates/header.html"))() %>
+<header class="row justify-content-center mb-3">
+
+  <%= _.template(require("./templates/header.html"))() %>
+
+  <h1 class="text-center">Погода</h1>
+</header>
 
 <main role="main" class="container">
-  <div class="row justify-content-center">
+  <div class="row justify-content-center mb-3">
     <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+
       <select id="city-select" name="city" class="form-control form-control-lg">
         <option value="" selected disabled hidden>Выберите населённый пункт</option>
         <option value="Vladivostok,ru">Владивосток, Россия</option>
@@ -24,8 +30,11 @@
         <option value="San Francisco,us">Сан-Франциско, США</option>
         <option value="Sydney,au">Сидней, Австралия</option>
       </select>
+
     </div>
   </div>
+
+  <%= _.template(require("./templates/loading-spinner.html"))() %>
 
   <div class="row justify-content-center">
     <div class="col-12 col-md-9 col-lg-7 col-xl-6">

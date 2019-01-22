@@ -1,4 +1,6 @@
 import * as moment from "moment";
+import * as ElementUtils from "./element-utils";
+import * as LoadingSpinner from "./loading-spinner";
 
 export function loadPage() {
     console.log("You're at /weather.html now");
@@ -7,13 +9,15 @@ export function loadPage() {
     const weatherView = document.getElementById("weather-view");
 
     citySelect.addEventListener("change", () => {
-        const city = citySelect.value;
+        ElementUtils.clear(weatherView);
 
-        console.log("Selected city: " + city);
+        console.log("Selected city: " + citySelect.value);
 
-        const url = getUrl(city);
+        const url = getUrl(citySelect.value);
 
         console.log("fetching... " + url);
+
+        LoadingSpinner.show();
 
         fetch(url)
             .then(response => response.json())
@@ -31,7 +35,10 @@ export function loadPage() {
                     calculatedAt: json.dt
                 };
             })
-            .then(weather => updateWeatherView(weatherView, weather));
+            .then(weather => {
+                LoadingSpinner.hide();
+                updateWeatherView(weatherView, weather);
+            });
     });
 }
 
@@ -62,6 +69,8 @@ function updateWeatherView(weatherView, weather) {
 }
 
 function getWeatherViewHtml(weather) {
+    const updatedLocalTime = moment.unix(weather.calculatedAt).local();
+
     return `
         <header class="main-weather-info">
           ${weather.temperature} °C, ${weather.status}
@@ -99,6 +108,6 @@ function getWeatherViewHtml(weather) {
         </ul>
         <hr>
         <footer>
-          Обновлено ${moment.unix(weather.calculatedAt).local().format("LLL")}
+          Обновлено ${updatedLocalTime.format("LLL")} (${updatedLocalTime.local().fromNow()})
         </footer>`;
 }

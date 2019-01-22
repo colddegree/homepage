@@ -10,6 +10,14 @@
 
 <%= _.template(require("./templates/header.html"))({ titleHeading: "Добро пожаловать!" }) %>
 
+<main role="main" class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-auto">
+      <img src=<%= require("../img/ricardo.png") %> alt="Рикардо">
+    </div>
+  </div>
+</main>
+
 <%= _.template(require("./templates/footer.html"))() %>
 
 </body>

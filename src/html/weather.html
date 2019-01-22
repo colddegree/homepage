@@ -8,10 +8,10 @@
 </head>
 <body>
 
-<%= _.template(require("./templates/header.html"))({ titleHeading: "Погода..." }) %>
+<%= _.template(require("./templates/header.html"))({ titleHeading: "Погода" }) %>
 
 <main role="main" class="container">
-  <div class="row justify-content-center mb-3">
+  <div class="row justify-content-center py-3">
     <div class="col-12 col-md-9 col-lg-7 col-xl-6">
 
       <select id="city-select" name="city" class="form-control form-control-lg">
@@ -31,7 +31,7 @@
 
   <%= _.template(require("./templates/loading-spinner.html"))() %>
 
-  <div class="row justify-content-center">
+  <div class="row justify-content-center py-3">
     <div class="col-12 col-md-9 col-lg-7 col-xl-6">
       <div id="weather-view">
 

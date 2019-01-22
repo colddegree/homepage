@@ -61,6 +61,13 @@ export function loadPage() {
 
     baseCurrencySelect.addEventListener("change", handler);
     targetCurrencySelect.addEventListener("change", handler);
+
+    (function firstStart() {
+        baseCurrencySelect.selectedIndex = 1;
+        targetCurrencySelect.selectedIndex = 4;
+
+        handler();
+    })();
 }
 
 function getUrl(baseCurrencyCode, targetCurrencyCode) {

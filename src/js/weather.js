@@ -8,7 +8,7 @@ export function loadPage() {
     const citySelect = document.getElementById("city-select");
     const weatherView = document.getElementById("weather-view");
 
-    citySelect.addEventListener("change", () => {
+    const handler = () => {
         ElementUtils.clear(weatherView);
 
         console.log("Selected city: " + citySelect.value);
@@ -39,7 +39,15 @@ export function loadPage() {
                 LoadingSpinner.hide();
                 updateWeatherView(weatherView, weather);
             });
-    });
+    };
+
+    citySelect.addEventListener("change", handler);
+
+    (function firstStart() {
+        citySelect.selectedIndex = 1;
+
+        handler();
+    })();
 }
 
 function getUrl(city) {

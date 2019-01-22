@@ -5,12 +5,12 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const MomentLocalesPlugin = require("moment-locales-webpack-plugin");
 
 const HTML_WEBPACK_PLUGIN__MINIFY_OPTIONS = {
-    // collapseWhitespace: true,
-    // removeComments: true,
-    // removeRedundantAttributes: true,
-    // removeScriptTypeAttributes: true,
-    // removeStyleLinkTypeAttributes: true,
-    // useShortDoctype: true
+    collapseWhitespace: true,
+    removeComments: true,
+    removeRedundantAttributes: true,
+    removeScriptTypeAttributes: true,
+    removeStyleLinkTypeAttributes: true,
+    useShortDoctype: true
 };
 
 module.exports = {
@@ -77,6 +77,7 @@ module.exports = {
         new MiniCssExtractPlugin({
            filename: "./css/style.bundle.css"
         }),
+
         new HtmlWebpackPlugin({
             filename: "index.html",
             template: "./html/index.html",
@@ -92,6 +93,12 @@ module.exports = {
             template: "./html/crypto.html",
             minify: HTML_WEBPACK_PLUGIN__MINIFY_OPTIONS
         }),
+        new HtmlWebpackPlugin({
+            filename: "contact.html",
+            template: "./html/contact.html",
+            minify: HTML_WEBPACK_PLUGIN__MINIFY_OPTIONS
+        }),
+
         new MomentLocalesPlugin({
             localesToKeep: ['ru']
         })

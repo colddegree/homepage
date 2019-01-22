@@ -8,12 +8,7 @@
 </head>
 <body>
 
-<header class="row justify-content-center mb-3">
-
-  <%= _.template(require("./templates/header.html"))() %>
-
-  <h1 class="text-center">Курс криптовалют</h1>
-</header>
+<%= _.template(require("./templates/header.html"))({ titleHeading: "Курс криптовалют" }) %>
 
 <main role="main" class="container">
   <div class="row justify-content-center mb-3">
@@ -62,6 +57,8 @@
     </div>
   </div>
 </main>
+
+<%= _.template(require("./templates/footer.html"))() %>
 
 </body>
 </html>

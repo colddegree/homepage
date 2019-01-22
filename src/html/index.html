@@ -8,15 +8,9 @@
 </head>
 <body>
 
-<%= _.template(require("./templates/header.html"))() %>
+<%= _.template(require("./templates/header.html"))({ titleHeading: "Пустота..." }) %>
 
-<div class="container">
-  <div class="row">
-    <div class="col-12 col-md-8">
-      <h1>Пустота...</h1>
-    </div>
-  </div>
-</div>
+<%= _.template(require("./templates/footer.html"))() %>
 
 </body>
 </html>
